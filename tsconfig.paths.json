@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./",
+      "paths": {
+        "@screens/*": ["src/screens/*"],
+        "@components/*": ["src/components/*"],
+        "@customTypes": ["src/customTypes/*"],
+        "@context/*": ["src/context/*"],
+        "@assets/*": ["src/assets/*"],
+        "@hooks/*": ["src/hooks/*"],
+        "@helpers/*": ["src/helpers/*"],
+        "@config/*": ["src/config/*"],
+        "@sass/*": ["src/sass/*"]
+      }
+    }
+  }

@@ -1,0 +1,30 @@
+.vertical-indicator-wrapper {
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  margin: 20px;
+  padding-left: 5px;
+  writing-mode: vertical-rl;  
+  color: $font-color-conditional;
+  mix-blend-mode: difference;  
+  transition: color cubic-bezier(.17,.67,.83,.67);
+  text-transform: uppercase;
+  
+  &::after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      border: solid 1px;
+      background-color: black;
+      right: 100%;
+      bottom: 0;
+    }
+}
+
+.vertical-indicator-text {
+    font-size: clamp(10px, 20px, 3vw);
+    font-size: clamp(15px, 20px, 3vw);
+    max-width: 100%;
+    font-weight: bolder;
+}
