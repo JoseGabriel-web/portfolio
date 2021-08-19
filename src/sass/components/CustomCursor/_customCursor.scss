@@ -1,0 +1,23 @@
+.cursor {
+  display: flex;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease-in-out;
+  transition-property: width, height, border;
+  will-change: width, height, transform, border;
+  mix-blend-mode: difference;
+  background-color: white;
+  z-index: 999999;
+
+  circle {
+    stroke: white;
+    fill: white;
+    mix-blend-mode: difference;
+  }
+}

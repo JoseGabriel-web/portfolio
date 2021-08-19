@@ -1,5 +1,5 @@
-import HomeSection from "@components/homeSection/HomeSection";
-import VerticalIndicator from "@components/verticalIndicator/VerticalIndicator";
+import HomeSection from "@components/HomeSection/HomeSection";
+import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
 import { motion } from "framer-motion";
 
 const HomeScreen = () => {
