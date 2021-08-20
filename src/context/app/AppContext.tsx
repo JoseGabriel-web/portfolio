@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, MutableRefObject } from "react";
 import ScrollProvider from "@context/scroll/ScrollProvider";
 
-const AppContext: FC = ({ children }) => {
+const AppContext: FC<{ containerRef: MutableRefObject<any> }> = ({ children, containerRef }) => {
   return (
     <>
-      <ScrollProvider>{children}</ScrollProvider>
+      <ScrollProvider containerRef={containerRef}>{children}</ScrollProvider>
     </>
   );
 };

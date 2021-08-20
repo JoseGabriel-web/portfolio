@@ -1,13 +1,28 @@
+import { MutableRefObject, ReactChild } from "react";
 import { useState, FC, useEffect } from "react";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
+import {
+  LocomotiveScrollProvider,
+  useLocomotiveScroll,
+} from "react-locomotive-scroll";
+import { useLocation } from "react-router-dom";
 
-const ScrollProvider: FC = ({ children }) => {
+interface props {
+  containerRef: MutableRefObject<any>;
+}
 
-  const [container, setContainer] = useState<Element | null>()
+const ScrollProvider: FC<props> = ({ containerRef, children }) => {
+  const { pathname } = useLocation();
+  const { scroll, isReady } = useLocomotiveScroll();
 
   useEffect(() => {
-    setContainer(document.querySelector("[data-scroll-container]"));
-  },[])
+    if(scroll) {
+      scroll.scrollTo(pathname);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    console.log(scroll, isReady);
+  }, [scroll, isReady]);
 
   return (
     <LocomotiveScrollProvider
@@ -15,11 +30,14 @@ const ScrollProvider: FC = ({ children }) => {
         smooth: true,
         direction: "vertical",
         multiplier: 0.2,
+        lerp: 0.1,
+        getDirection: true,
+        getSpeed: true,
       }}
-      watch={
-        [container]
-      }
-      containerRef={document.querySelector("[data-scroll-container]")}
+      watch={[containerRef.current, pathname]}
+      location={pathname}
+      onLocationChange={() => console.log("location change")}
+      containerRef={containerRef}
     >
       {children}
     </LocomotiveScrollProvider>

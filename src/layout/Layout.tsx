@@ -1,8 +1,9 @@
 import CustomCursor from "@components/CustomCursor/CustomCursor";
-import Navigation from "@components/Nav/Nav";
+import Nav from "@components/Nav/Nav";
 import AppContext from "@context/app/AppContext";
 import { AnimatePresence, motion, useViewportScroll } from "framer-motion";
-import { useEffect, useState, FC, useRef } from "react";
+import { useEffect, useState, FC } from "react";
+import { useRef } from "react";
 
 const headerVariants = {
   enter: {
@@ -18,6 +19,7 @@ const headerVariants = {
 const Layout: FC = ({ children }) => {
   const { scrollY } = useViewportScroll();
   const [hidden, setHidden] = useState(false);
+  const containerRef = useRef(null);
 
   const update = () => {
     if (scrollY.get() < scrollY.getPrevious()) {
@@ -31,11 +33,10 @@ const Layout: FC = ({ children }) => {
     return scrollY.onChange(() => update());
   });
 
-
   return (
-    <AnimatePresence>
-      <AppContext>
-        <motion.main id="container" data-scroll-container>
+    <AppContext containerRef={containerRef}>
+      <AnimatePresence>
+        <motion.main id="container" ref={containerRef} data-scroll-container>
           <CustomCursor />
           <motion.header
             variants={headerVariants}
@@ -44,16 +45,15 @@ const Layout: FC = ({ children }) => {
             exit="exit"
             data-scroll
             data-scroll-sticky
-            data-scroll-target="#container"            
+            data-scroll-target="#container"
           >
-            <Navigation />
+            <Nav />
           </motion.header>
-
 
           {children}
         </motion.main>
-      </AppContext>
-    </AnimatePresence>
+      </AnimatePresence>
+    </AppContext>
   );
 };
 

@@ -5,6 +5,7 @@
 body {
   background: $background;
   color: $font-color;
+  overflow-x: hidden;
 }
 main {
   height: auto;
