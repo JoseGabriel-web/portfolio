@@ -2,6 +2,7 @@ header {
   position: fixed;
   height: 10vh;
   width: 100%;
+  max-width: 100%;
   z-index: $in-front;
   background-color: transparent;
   color: $font-color-conditional;

@@ -20,19 +20,19 @@ const ScrollProvider: FC<props> = ({ containerRef, children }) => {
     }
   }, [pathname]);
 
-  useEffect(() => {
-    console.log(scroll, isReady);
-  }, [scroll, isReady]);
-
   return (
     <LocomotiveScrollProvider
       options={{
         smooth: true,
         direction: "vertical",
+        gestureDirection: "vertical",
         multiplier: 0.2,
         lerp: 0.1,
         getDirection: true,
         getSpeed: true,
+        reloadOnContextChange: true,
+        repeat: true,
+        isMobile: true
       }}
       watch={[containerRef.current, pathname]}
       location={pathname}

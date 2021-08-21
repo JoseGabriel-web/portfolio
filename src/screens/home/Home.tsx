@@ -6,7 +6,12 @@ const HomeScreen = () => {
   return (
     <motion.div data-section className="home-screen">
       <HomeSection />
-      <section data-scroll-section className="about-section" id="about-section"></section>
+      <section
+        data-scroll-section
+        className="about-section"
+        id="about"
+        data-scroll
+      ></section>
       <motion.div
         data-scroll
         data-scroll-sticky

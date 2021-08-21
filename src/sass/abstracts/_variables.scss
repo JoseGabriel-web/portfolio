@@ -7,8 +7,11 @@ $layout-breakpoint-xsmall: 480px;
 /* Colors */
 
 /* backgrounds */
-$background: #f0eff1;
+$background: #E5E5E5;
+$background-menu: #B8B8AF;
+$background-menu-dark: #141414;
 $background-home: #E5E5E5;
+$background-about: #141414;
 
 /* fonts */
 $font-color: #131212;
@@ -19,3 +22,6 @@ $font-color-conditional: white;
 $in-front: 100;
 $in-middle: 50;
 $in-back: 0;
+
+$background: #D3D3CC;
+$background-home: #D3D3CC;

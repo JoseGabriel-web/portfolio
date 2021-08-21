@@ -1,0 +1,32 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: $background;
+}
+
+.loader-logo {
+  overflow: hidden;
+  margin-bottom: 20px;
+  span {
+    display: inline-block;
+    font-size: clamp(15px, 40px, 40px);
+    font-weight: bolder;
+  }
+}
+
+.loader-progress-bar {
+  width: 200px;
+  height: 4px;
+  border: solid 1px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loader-progress-bar-bar {
+  background-color: $font-color-heading;
+  height: 100%;
+}

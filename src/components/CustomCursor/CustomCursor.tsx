@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { isBrowser } from "react-device-detect";
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 999, y: 999 });
@@ -17,14 +18,18 @@ const CustomCursor = () => {
   }, []);
 
   return (
-    <motion.div
-      className="cursor"
-      style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }}
-    >
-      <motion.svg height="10" width="10">
-        <motion.circle cx="4" cy="4" r="3" stroke-width="0"></motion.circle>
-      </motion.svg>
-    </motion.div>
+    <>
+      {isBrowser && (
+        <motion.div
+          className="cursor"
+          style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }}
+        >
+          <motion.svg height="10" width="10">
+            <motion.circle cx="4" cy="4" r="3" stroke-width="0"></motion.circle>
+          </motion.svg>
+        </motion.div>
+      )}
+    </>
   );
 };
 

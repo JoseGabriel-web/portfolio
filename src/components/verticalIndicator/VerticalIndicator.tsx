@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { FC } from "react";
 import { useEffect, useRef } from "react";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
+import { useLocation } from "react-router-dom";
 
 const indicatorVariants = {
   enter: {
@@ -16,19 +19,29 @@ const indicatorVariants = {
 };
 
 const VerticalIndicator: FC = () => {
+  const location = useLocation();
   const ref = useRef(null);
+  const [label, setLabel] = useState(location.hash);
+
+  useEffect(() => {
+    console.log(location.hash);
+    if (!location.hash) setLabel("home");
+    else {
+      setLabel(location.hash.replace("#", ""));
+    }
+  }, [location.hash]);
 
   return (
     <motion.div
       variants={indicatorVariants}
-      key="asd"
+      key={label}
       initial="exit"
       animate="enter"
       exit="exit"
       className="vertical-indicator-wrapper"
       ref={ref}
     >
-      <h3 className="vertical-indicator-text">home</h3>
+      <small className="vertical-indicator-text">{label}</small>
     </motion.div>
   );
 };

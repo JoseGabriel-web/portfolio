@@ -3,10 +3,10 @@ import { Route, Switch } from "react-router-dom";
 import Layout from "./layout/Layout";
 import "./locomotive-scroll.css";
 import "@sass/main.scss";
-// import AppContext from "@context/app/AppContext";
+import { useState } from "react";
 
-const App = () => {
-  // <AppContext>
+const App = () => {  
+
   return (
       <Layout>
         <Switch>
@@ -16,7 +16,6 @@ const App = () => {
             </Route>
           ))}
         </Switch>
-    {/* </AppContext> */}
       </Layout>
   );
 };

@@ -1,13 +1,11 @@
 .home-screen {
   position: relative;
   height: auto;
-  width: 100%;  
 }
 
 
 
 .about-section {
   height: 100vh;  
-  background-color: black;
-  // background-color: white;
+  background-color: $background-about;
 }

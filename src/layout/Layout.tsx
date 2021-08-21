@@ -1,9 +1,11 @@
 import CustomCursor from "@components/CustomCursor/CustomCursor";
 import Nav from "@components/Nav/Nav";
 import AppContext from "@context/app/AppContext";
-import { AnimatePresence, motion, useViewportScroll } from "framer-motion";
-import { useEffect, useState, FC } from "react";
+import Loader from "@components/Loader/Loader";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState, FC } from "react";
 import { useRef } from "react";
+import NavMenu from "@components/NavMenu/NavMenu";
 
 const headerVariants = {
   enter: {
@@ -17,43 +19,44 @@ const headerVariants = {
 };
 
 const Layout: FC = ({ children }) => {
-  const { scrollY } = useViewportScroll();
-  const [hidden, setHidden] = useState(false);
   const containerRef = useRef(null);
-
-  const update = () => {
-    if (scrollY.get() < scrollY.getPrevious()) {
-      setHidden(false);
-    } else if (scrollY.get() > 100 && scrollY.get() > scrollY.getPrevious()) {
-      setHidden(true);
-    }
-  };
-
-  useEffect(() => {
-    return scrollY.onChange(() => update());
-  });
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isNavMenuOpened, setIsNavMenuOpened] = useState<boolean>(false);  
 
   return (
-    <AppContext containerRef={containerRef}>
-      <AnimatePresence>
-        <motion.main id="container" ref={containerRef} data-scroll-container>
-          <CustomCursor />
-          <motion.header
-            variants={headerVariants}
-            initial="exit"
-            animate={hidden ? "exit" : "enter"}
-            exit="exit"
-            data-scroll
-            data-scroll-sticky
-            data-scroll-target="#container"
-          >
-            <Nav />
-          </motion.header>
-
-          {children}
-        </motion.main>
-      </AnimatePresence>
-    </AppContext>
+    <AnimatePresence>
+      {loading ? (
+        <Loader setLoading={setLoading} />
+      ) : (
+        <AppContext containerRef={containerRef}>
+          <motion.main id="container" ref={containerRef}>
+            <CustomCursor />
+            <motion.header
+              variants={headerVariants}
+              initial="exit"
+              animate="enter"
+              exit="exit"
+              data-scroll
+              data-scroll-sticky
+              data-scroll-target="#container"
+            >
+              <Nav setIsNavMenuOpened={setIsNavMenuOpened} />
+            </motion.header>
+            {children}
+            <motion.div
+              data-scroll
+              data-scroll-sticky
+              data-scroll-target="#container"
+            >
+              <NavMenu
+                setIsNavMenuOpened={setIsNavMenuOpened}
+                isNavMenuOpened={isNavMenuOpened}
+              />
+            </motion.div>
+          </motion.main>
+        </AppContext>
+      )}
+    </AnimatePresence>
   );
 };
 
