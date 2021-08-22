@@ -7,21 +7,28 @@ $layout-breakpoint-xsmall: 480px;
 /* Colors */
 
 /* backgrounds */
-$background: #E5E5E5;
-$background-menu: #B8B8AF;
-$background-menu-dark: #141414;
-$background-home: #E5E5E5;
-$background-about: #141414;
+$background: #F7F0E8;
+$background-home: $background;
+$background-about: $background;
+$background-menu: $background;
+$background-menu-dark: #000;
+
 
 /* fonts */
-$font-color: #131212;
+$font-color: #231F20;
 $font-color-heading: black;
 $font-color-conditional: white;
+$font-color-light: #B8B8AF;
 
 /* Z-index */
 $in-front: 100;
 $in-middle: 50;
 $in-back: 0;
 
-$background: #D3D3CC;
-$background-home: #D3D3CC;
+
+$background: #FFFFFF;
+$background-text: #F7F5F5;
+$background-home: $background;
+$background-about: $background;
+$background-menu: $background;
+$background-about: #000;

@@ -1,0 +1,39 @@
+$move-initial: calc(-25%);
+$move-final: calc(-50%);
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee_text_wrapper {
+  width: max-content;
+  display: flex;
+  transform: translateX($move-initial);
+  span {
+    white-space: nowrap;
+    font-weight: 700;
+    font-family: sans-serif;
+    -webkit-font-smoothing: auto;
+    margin: 0;
+    color: #f7f5f5;
+    font-size: 7.3125rem;
+    line-height: 1em;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+}
+
+.playing {
+  animation: marquee 5s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX($move-initial);
+  }
+
+  100% {
+    transform: translateX($move-final);
+  }
+}

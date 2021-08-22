@@ -1,9 +1,11 @@
+import { useCustomCursor } from "@context/customCursor/CustomCursorProvider";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { isBrowser } from "react-device-detect";
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 999, y: 999 });
+  const { isHovered, setIsHovered } = useCustomCursor()
 
   const onMouseMove = (e: MouseEvent) => {
     const { pageX: x, pageY: y } = e;
@@ -21,7 +23,7 @@ const CustomCursor = () => {
     <>
       {isBrowser && (
         <motion.div
-          className="cursor"
+          className={`cursor ${isHovered && "isHovering"}`}
           style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }}
         >
           <motion.svg height="10" width="10">

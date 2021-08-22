@@ -24,7 +24,7 @@ const easing = [0.645, 0.045, 0.355, 1];
 const itemVariant = {
   initial: {
     x: initialAndExitPosition,
-    skew: 5,
+    // skew: 5,
     transition: { ease: easing, duration: animateDuration },
   },
   enter: {
@@ -37,7 +37,7 @@ const itemVariant = {
   },
   exit: {
     x: initialAndExitPosition,
-    skew: -5,
+    // skew: -5,
     transition: {
       ease: easing,
       duration: animateDuration,
@@ -49,7 +49,7 @@ const itemVariant = {
 const itemVariantMain = {
   initial: {
     x: initialAndExitPosition,
-    skew: 5,
+    // skew: 5,
     transition: { ease: easing, duration: animateDuration },
   },
   enter: {
@@ -63,14 +63,14 @@ const itemVariantMain = {
   },
   exit: {
     x: initialAndExitPosition,
-    skew: -5,
+    // skew: -5,
     transition: { ease: easing, duration: animateDuration },
   },
 };
 
 const linksVariants = {
   initial: {
-    y: 200,
+    y: 100,
     opacity: 0,
     transition: {
       ease: easing,
@@ -142,16 +142,17 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
           >
             <motion.div className="nav-menu-header">
               <motion.div className="nav-menu-header-logo-wrapper">
-                <Logo />
+                <Logo onClick={handleLinkClick} />
               </motion.div>
               <motion.div className="nav-menu-header-close-btn-wrapper">
-                <CloseSVG onClick={handleCloseNavMenu} size={33} />
+                <CloseSVG onClick={handleCloseNavMenu} size={40} />
               </motion.div>
             </motion.div>
 
             <motion.div className="nav-menu-content">
               <motion.div className="nav-menu-links-wrapper">
                 <AnimatePresence key={isNavMenuOpened + ""}>
+                  <h1>Menu</h1>
                   {homeSections.map(({ hash, path, label }, index) => (
                     <motion.div
                       className="nav-menu-link"

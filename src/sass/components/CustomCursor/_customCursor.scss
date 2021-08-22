@@ -21,3 +21,15 @@
     mix-blend-mode: difference;
   }
 }
+
+.isHovering {
+  width: 25px;
+  height: 25px;
+  mix-blend-mode: normal;
+  background-color: black;
+
+  circle {
+    mix-blend-mode: normal;    
+    background-color: white;
+  }
+}
