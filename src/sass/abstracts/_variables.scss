@@ -1,13 +1,12 @@
 /* Breakpoints */
-$layout-breakpoint-large: 1920px;
-$layout-breakpoint-medium: 1440px;
-$layout-breakpoint-small: 960px;
-$layout-breakpoint-xsmall: 480px;
+$layout-breakpoint-medium: 960px;
+$layout-breakpoint-small: 767px;
 
 /* Colors */
 
 /* backgrounds */
-$background: #F7F0E8;
+$background: #F9F9F9;
+$background-loader: #0D0D0D;
 $background-home: $background;
 $background-about: $background;
 $background-menu: $background;
@@ -19,6 +18,10 @@ $font-color: #231F20;
 $font-color-heading: black;
 $font-color-conditional: white;
 $font-color-light: #B8B8AF;
+$font-color-marquee: $font-color-light;
+$font-color-marquee: #ebebeb;
+$font-color-loader: white;
+
 
 /* Z-index */
 $in-front: 100;
@@ -26,9 +29,11 @@ $in-middle: 50;
 $in-back: 0;
 
 
-$background: #FFFFFF;
-$background-text: #F7F5F5;
+$font-color-marquee: #FFF;
+
+$background: #E5E5E5;
 $background-home: $background;
 $background-about: $background;
 $background-menu: $background;
-$background-about: #000;
+$background-menu-dark: #000;
+$font-color-marquee: #FFF;

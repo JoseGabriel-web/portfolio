@@ -2,18 +2,16 @@ import CloseSVG from "@assets/svg/CloseSVG";
 import Logo from "@components/Logo/Logo";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { FC } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
 import { useHistory } from "react-router-dom";
+import {
+  useHandleMouseOver,
+  useHandleMouseLeave,
+} from "@context/customCursor/CustomCursorProvider";
+import sections from "@assets/data/links";
 
 interface props {
   setIsNavMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
   isNavMenuOpened: boolean;
-}
-
-interface SectionPathInformation {
-  label: string;
-  path: string;
-  hash?: string;
 }
 
 const animateDuration = 0.5;
@@ -41,7 +39,7 @@ const itemVariant = {
     transition: {
       ease: easing,
       duration: animateDuration,
-      delay: animateDuration / 2,
+      delay: animateDuration,
     },
   },
 };
@@ -58,7 +56,7 @@ const itemVariantMain = {
     transition: {
       ease: easing,
       duration: animateDuration,
-      delay: animateDuration / 2,
+      delay: animateDuration,
     },
   },
   exit: {
@@ -95,30 +93,12 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
   const handleCloseNavMenu = () => {
     setIsNavMenuOpened(false);
   };
-
-  const { scroll, isReady } = useLocomotiveScroll();
+  const handleMouseOver = useHandleMouseOver();
+  const handleMouseLeave = useHandleMouseLeave();
   const history = useHistory();
 
-  const homeSections: SectionPathInformation[] = [
-    { label: "home", path: "/" },
-    { label: "about", path: "/#about", hash: "#about" },
-    { label: "projects", path: "/" },
-    { label: "contact", path: "/" },
-  ];
-
-  interface handleLinkClick {
-    hash?: string | undefined;
-    path: string;
-  }
-  const handleLinkClick = ({ hash, path }: handleLinkClick) => {
-    handleCloseNavMenu();
-    if (typeof hash === "string") {
-      scroll.scrollTo(hash);
-      history.push(path);
-    } else {
-      scroll.scrollTo("top");
-      history.push(path);
-    }
+  const handleLink = () => {
+    setIsNavMenuOpened(false)
   };
 
   return (
@@ -142,7 +122,7 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
           >
             <motion.div className="nav-menu-header">
               <motion.div className="nav-menu-header-logo-wrapper">
-                <Logo onClick={handleLinkClick} />
+                <Logo onClick={handleLink} />
               </motion.div>
               <motion.div className="nav-menu-header-close-btn-wrapper">
                 <CloseSVG onClick={handleCloseNavMenu} size={40} />
@@ -153,7 +133,7 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
               <motion.div className="nav-menu-links-wrapper">
                 <AnimatePresence key={isNavMenuOpened + ""}>
                   <h1>Menu</h1>
-                  {homeSections.map(({ hash, path, label }, index) => (
+                  {sections.map(({ hash, path, label }, index) => (
                     <motion.div
                       className="nav-menu-link"
                       key={isNavMenuOpened + ""}
@@ -165,10 +145,15 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
                           transition: { duration: 0.3 },
                         }}
                         variants={linksVariants}
-                        onClick={() => handleLinkClick({ hash, path })}
+                        onClick={(e) => handleLink()}
                       >
                         <motion.span>00{index + 1}</motion.span>
-                        <motion.h2>{label}</motion.h2>
+                        <motion.h2
+                          onMouseOver={handleMouseOver}
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          {label}
+                        </motion.h2>
                       </motion.div>
                     </motion.div>
                   ))}

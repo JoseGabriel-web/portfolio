@@ -6,9 +6,12 @@
 @import "layout/header";
 @import "layout/navigation";
 @import "layout/footer";
-@import "screens/home";
-@import "components/VerticalIndicator/verticalIndicator";
-@import "components/HomeSection/homeSection";
 @import "components/CustomCursor/customCursor";
 @import "components/Loader/loader";
 @import "components/Marquee/marquee";
+@import "components/NavMenu/NavMenu.scss";
+@import "screens/home";
+@import "components/VerticalIndicator/verticalIndicator";
+@import "components/HomeSection/homeSection";
+@import "components/AboutSection/AboutSection.scss";
+@import "components/ProjectsSection/projectsSection.scss";

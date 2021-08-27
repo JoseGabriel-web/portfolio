@@ -1,18 +1,24 @@
 nav {
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 100%;
-  width: calc(100% - 40px);
+  height: 100%;  
+  width: 100%;
+  padding: 0 40px;
   margin: auto;
-  text-transform: uppercase;
+  text-transform: uppercase;    
 }
 
 .nav-logo-wrapper,
-.nav-menu-btn {
+.nav-actions-wrapper {
   display: flex;
   align-items: center;
   width: 50%;
+}
+
+.nav-actions-wrapper {
+  justify-content: flex-end;
 }
 
 .nav-logo-wrapper {
@@ -20,141 +26,110 @@ nav {
 }
 .nav-logo {
   font-size: clamp(15px, 20px, 3vw);
+  font-size: clamp(20px, 25px, 3vw);
   max-width: 100%;
   font-weight: 700;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
   z-index: $in-front + 2;
 }
-.nav-menu-btn {
-  justify-content: flex-end;
 
+.nav-mobile-btn-wrapper {
+  display: none;
 }
 .nav-menu-icon {
-  /* Width is set by parent as style prop */  
+  /* Width is set by parent as style prop */
   position: relative;
-  height: 6px; 
+  height: 6px;
 }
 .nav-menu-icon::before,
 .nav-menu-icon::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 0;
-  border-top: solid 2px $font-color-conditional;  
+  border-top: solid 2px $font-color-conditional;
 }
-.nav-menu-icon::before {  
+.nav-menu-icon::before {
   transform: translateY(-3px);
 }
-.nav-menu-icon::after {    
+.nav-menu-icon::after {
   transform: translateY(3px);
 }
 .nav-menu-icon-label {
   position: absolute;
-  top: 100%;  
+  top: 100%;
   left: 50%;
   margin-top: 10px;
   font-size: 15px;
   writing-mode: vertical-lr;
-  transform: rotate(0deg) translateX(-50%);  
+  transform: rotate(0deg) translateX(-50%);
 }
 
-.nav-menu-wrapper {
-  position: fixed;
+.nav-links-wrapper {
   display: flex;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: $background-menu-dark;
-  z-index: $in-front + 1;
-  // transform: skew(-5deg);
-  // background-color: transparent;
-}
-
-.nav-menu {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: $background-menu;
-  z-index: $in-front + 1;
-  transform: skew(-5deg);
-  text-transform: uppercase;
-}
-
-.nav-menu-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: calc(100% - 40px);
-  margin: 0 auto;
-  height: 10vh;
-}
-
-.nav-menu-header-logo-wrapper,
-.nav-menu-header-close-btn-wrapper {
-  width: 50%;
-  display: flex;
-  align-items: center;
-}
-
-.nav-menu-header-logo-wrapper {
-  justify-content: flex-start;
-  font-size: clamp(15px, 20px, 3vw);
-  max-width: 100%;
-  font-weight: bolder;
-}
-.nav-menu-header-close-btn-wrapper {
   justify-content: flex-end;
-}
-
-.nav-menu-content {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  justify-content: center;
-}
-
-.nav-menu-links-wrapper {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  max-width: max-content;
-  margin: auto;
-  flex-direction: column;
-  color: $font-color;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
 
-  h1 {
-    font-weight: bolder;
-    margin-bottom: 20px;
+  .links-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+  }
+  .link {
+    position: relative;    
+    font-size: 15px;
+    text-transform: uppercase;
+    line-height: 1.5;
+
+    &__selected::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      height: 0px;
+      width: 100%;
+      border: solid 1px;
+      background-color: black;
+      animation: extend 0.2s linear;
+    }
+
+    &:hover {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        height: 0px;
+        width: 100%;
+        border: solid 1px;
+        background-color: black;
+        animation: extend 0.2s linear;
+      }
+
+      @keyframes extend {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    }
   }
 }
-.nav-menu-link {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  font-size: clamp(30px, 50px, 5vw);
-  line-height: 1.5;
-  font-weight: bolder;
 
-  h2 {
-    margin-left: 10px;
+@media screen and (max-width: $layout-breakpoint-medium) {
+  .nav-mobile-btn-wrapper {
+    display: flex;
   }
-
-  span {
-    display: block;
-    font-weight: 300;
-  }
-
-  &:hover {
-    color: $font-color-light;
+  .nav-links-wrapper {
+    display: none;
   }
 }

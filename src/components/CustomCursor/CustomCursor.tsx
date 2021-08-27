@@ -5,7 +5,7 @@ import { isBrowser } from "react-device-detect";
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 999, y: 999 });
-  const { isHovered, setIsHovered } = useCustomCursor()
+  const { isHovered, setIsHovered } = useCustomCursor();
 
   const onMouseMove = (e: MouseEvent) => {
     const { pageX: x, pageY: y } = e;
@@ -13,7 +13,7 @@ const CustomCursor = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mousemove", onMouseMove);    
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
     };

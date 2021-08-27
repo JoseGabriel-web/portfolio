@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface props {
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  handleStart(): void
 }
 
 const logoCaracters = ["J", "G", "M", "G"];
@@ -71,12 +71,7 @@ const progressBarVariants = {
   exit: {},
 };
 
-const Loader: FC<props> = ({ setLoading }) => {
-  const closeLoader = () => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  };
+const Loader: FC<props> = ({ handleStart }) => {  
 
   return (
     <motion.div
@@ -94,7 +89,7 @@ const Loader: FC<props> = ({ setLoading }) => {
       <motion.div className="loader-progress-bar">
         <motion.div
           className="loader-progress-bar-bar"
-          onAnimationComplete={closeLoader}
+          onAnimationComplete={handleStart}
           variants={progressBarVariants}
           initial="initial"
           animate="enter"

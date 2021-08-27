@@ -1,24 +1,16 @@
+import AboutSection from "@components/AboutSection/AboutSection";
 import HomeSection from "@components/HomeSection/HomeSection";
+import ProjectsSection from "@components/ProjectsSection/ProjectsSection";
 import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
 import { motion } from "framer-motion";
 
-const HomeScreen = () => {
+const HomeScreen = () => {  
+
   return (
-    <motion.div data-section className="home-screen">
+    <motion.div className="home-screen">
       <HomeSection />
-      <section
-        data-scroll-section
-        className="about-section"
-        id="about"
-        data-scroll
-      ></section>
-      <motion.div
-        data-scroll
-        data-scroll-sticky
-        data-scroll-target="#container"
-      >
-        <VerticalIndicator />
-      </motion.div>
+      <AboutSection />
+      <ProjectsSection />
     </motion.div>
   );
 };

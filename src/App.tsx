@@ -1,9 +1,7 @@
 import screens from "@assets/data/screens";
 import { Route, Switch } from "react-router-dom";
 import Layout from "./layout/Layout";
-import "./locomotive-scroll.css";
 import "@sass/main.scss";
-import { useState } from "react";
 
 const App = () => {  
 

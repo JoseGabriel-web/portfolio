@@ -1,7 +1,8 @@
-import logo from "@assets/svg/logo.svg";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { FC, useState } from "react";
 import Marquee from "@components/Marquee/Marquee";
+import { useLocation } from "react-router-dom";
+import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
 
 const easing = [0.455, 0.03, 0.515, 0.955];
 
@@ -32,26 +33,13 @@ const staggerContainer = {
   exit: {},
 };
 
-const logoVariants = {
-  enter: {
-    y: 0,
-    transition: {
-      ease: easing,
-      duration: 0.45,
-      delay: 0.6,
-    },
-  },
-  exit: {
-    y: "-100%",
-    transition: { ease: easing, duration: 0.55 },
-  },
-};
-
-const HomeSection = () => {
+const HomeSection: FC = () => {
   const [isMarqueePlaying, setIsMarqueePlaying] = useState(false);
+  const [direction, setDirection] = useState<"normal" | "reverse">("normal");
+  const { pathname } = useLocation();
 
   return (
-    <motion.section data-scroll-section className="home-section">
+    <motion.section key={pathname} data-scroll-section className="home-section">      
       <motion.div className="home-section-content-wrapper">
         <motion.div
           key="w"
@@ -91,16 +79,22 @@ const HomeSection = () => {
           >
             <p className="home-section-text-paragraph">
               Im a full stack developer, currently focused on expanding my
-              knowdledge and skills, by creating clean & functional projects.
+              knowdledge and skills, by creating clean looking & functional projects.
             </p>
           </motion.div>
         </motion.div>
-
+        
         <Marquee
-          title={"JOSE GABRIEL MERCEDES GERONIMO"}
+          title={"LET'S WORK TOGETHER"}
           isPlaying={isMarqueePlaying}
+          duration={7}
+          direction={direction}
+          handleClick={() =>
+            setDirection(direction === "normal" ? "reverse" : "normal")
+          }
         />
       </motion.div>
+      <VerticalIndicator label={"HOME"} />
     </motion.section>
   );
 };

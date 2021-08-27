@@ -1,38 +1,35 @@
 import NavMenuSVG from "@assets/icon/NavMenuSVG";
 import Logo from "@components/Logo/Logo";
-import { useCustomCursor } from "@context/customCursor/CustomCursorProvider";
-import { FC, useEffect } from "react";
-import { useLocomotiveScroll } from "react-locomotive-scroll";
+import NavLinks from "@components/NavLinks/NavLinks";
+import usePageOffset from "@hooks/usePageOffset";
+import { FC, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Scrollbar from "smooth-scrollbar";
 
 interface props {
   setIsNavMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Navigation: FC<props> = ({ setIsNavMenuOpened }) => {
-  const { setIsHovered } = useCustomCursor();
-  const { scroll, isReady } = useLocomotiveScroll();
-  const history = useHistory();
-
   const openNavMenu = () => setIsNavMenuOpened(true);
+  const { top, left } = usePageOffset()
 
   return (
-    <nav id="nav">
+    <nav id="nav" style={top && left ? { top, left } : {}}>
       <Link
-        onClick={() => {
-          history.push("/");
-          scroll.scrollTo("top");
-        }}
         className="nav-logo-wrapper"
         to="/"
+        onClick={() => setIsNavMenuOpened(false)}
       >
         <Logo />
       </Link>
-      <div className="nav-menu-btn">
-        <NavMenuSVG
-          onClick={openNavMenu}
-          size={45}
-        />
+      <div className="nav-actions-wrapper">
+        <div className="nav-mobile-btn-wrapper">
+          <NavMenuSVG onClick={openNavMenu} size={45} />
+        </div>
+        <div className="nav-links-wrapper">
+          <NavLinks />
+        </div>
       </div>
     </nav>
   );

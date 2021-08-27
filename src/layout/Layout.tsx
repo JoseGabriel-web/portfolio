@@ -1,11 +1,13 @@
 import CustomCursor from "@components/CustomCursor/CustomCursor";
 import Nav from "@components/Nav/Nav";
-import AppContext from "@context/app/AppContext";
+import AppContextProvider from "@context/app/AppContextProvider";
 import Loader from "@components/Loader/Loader";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, FC } from "react";
-import { useRef } from "react";
+import { useState, FC, useRef } from "react";
 import NavMenu from "@components/NavMenu/NavMenu";
+import useSmoothScroller from "@hooks/useSmoothScroller";
+import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
+
 
 const headerVariants = {
   enter: {
@@ -19,44 +21,45 @@ const headerVariants = {
 };
 
 const Layout: FC = ({ children }) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(document.createElement("div"));
   const [loading, setLoading] = useState<boolean>(true);
   const [isNavMenuOpened, setIsNavMenuOpened] = useState<boolean>(false);  
+  useSmoothScroller()
+  
+  // Runs after loader animation
+  function handleStart() {
+    setTimeout(() => {
+      setLoading(false);      
+    }, 500);
+  }
 
   return (
-    <AnimatePresence>
-      {loading ? (
-        <Loader setLoading={setLoading} />
-      ) : (
-        <AppContext containerRef={containerRef}>
-          <motion.main id="container" ref={containerRef}>
+    <AppContextProvider>
+      <AnimatePresence>
+        {loading ? (
+          <Loader handleStart={handleStart} />
+          ) : (
+            <motion.main ref={containerRef}>
             <CustomCursor />
             <motion.header
               variants={headerVariants}
               initial="exit"
               animate="enter"
               exit="exit"
-              data-scroll
-              data-scroll-sticky
-              data-scroll-target="#container"
             >
               <Nav setIsNavMenuOpened={setIsNavMenuOpened} />
             </motion.header>
             {children}
-            <motion.div
-              data-scroll
-              data-scroll-sticky
-              data-scroll-target="#container"
-            >
+            <motion.div>
               <NavMenu
                 setIsNavMenuOpened={setIsNavMenuOpened}
                 isNavMenuOpened={isNavMenuOpened}
               />
             </motion.div>
           </motion.main>
-        </AppContext>
-      )}
-    </AnimatePresence>
+        )}        
+      </AnimatePresence>
+    </AppContextProvider>
   );
 };
 

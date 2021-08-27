@@ -5,7 +5,8 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-color: $background;
+  background-color: $background-loader;
+  color: $font-color-loader;
 }
 
 .loader-logo {
@@ -20,13 +21,13 @@
 
 .loader-progress-bar {
   width: 200px;
-  height: 4px;
-  border: solid 1px;
+  height: 2px;
+  // border: solid 1px;
   border-radius: 10px;
   overflow: hidden;
 }
 
 .loader-progress-bar-bar {
-  background-color: $font-color-heading;
+  background-color: $font-color-loader;  
   height: 100%;
 }
