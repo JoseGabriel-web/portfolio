@@ -1,7 +1,6 @@
 import AboutSection from "@components/AboutSection/AboutSection";
 import HomeSection from "@components/HomeSection/HomeSection";
 import ProjectsSection from "@components/ProjectsSection/ProjectsSection";
-import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
 import { motion } from "framer-motion";
 
 const HomeScreen = () => {  

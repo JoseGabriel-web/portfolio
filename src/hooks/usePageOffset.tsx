@@ -8,7 +8,6 @@ const usePageOffset = () => {
     const body = document.querySelector("body");
     if (body) {
       let scroller = Scrollbar.get(body);
-      console.log({ scroller });
       if (scroller) {
         scroller.addListener(({ offset }) => {
           setTop(offset.y + "px");

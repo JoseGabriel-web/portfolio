@@ -1,8 +1,8 @@
 import usePageOffset from "@hooks/usePageOffset";
 import { motion } from "framer-motion";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import useIsVisible from '@hooks/useIsVisible'
 
 const indicatorVariants = {
   enter: {
@@ -18,20 +18,22 @@ const indicatorVariants = {
 };
 
 const VerticalIndicator: FC<{ label: string }> = ({ label }) => {
-  const location = useLocation();
   const ref = useRef(null);
+  const isVisible = useIsVisible(ref)
+
+  useEffect(() => console.log({isVisible}),[isVisible])
 
   return (
     <motion.div
       variants={indicatorVariants}
       key={label}
       initial="exit"
-      animate="enter"
+      animate={isVisible? "enter" : "exit"}
       exit="exit"
       className="vertical-indicator-wrapper"
       ref={ref}
     >
-      <small  className="vertical-indicator-text">{label}</small>
+      <small className="vertical-indicator-text">{label}</small>
     </motion.div>
   );
 };

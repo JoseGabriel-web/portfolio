@@ -1,12 +1,9 @@
 import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
-import useIntersectionObserver from "@hooks/useIntersectionObserver";
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const entry = useIntersectionObserver(sectionRef, {});
-  const isVisible = !!entry?.isIntersecting;  
 
   return (
     <section

@@ -1,11 +1,11 @@
-.gallery-wrapper {
-  // background-color: #df6e1111;
+// background-color: #df6e1111;
+.projects-wrapper {
+  position: relative;
   background-color: $background;
   overflow: hidden !important;
 }
-.gallery {
-  // background-color: #df6e1111; 
-  background-color: $background; 
+.projects {
+  background-color: $background;   
   padding: 10vh 0;
   width: 400%;
   display: flex;
@@ -13,7 +13,7 @@
   height: 100vh;
   will-change: transform;
 }
-.item-wrapper {
+.project-wrapper {
   height: 100vh;
   position: relative;
   will-change: transform;
