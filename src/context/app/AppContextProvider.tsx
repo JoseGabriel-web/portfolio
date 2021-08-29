@@ -1,8 +1,7 @@
 import { FC } from "react";
-import CustomCursorProvider from "@context/customCursor/CustomCursorProvider";
 
 const AppContextProvider: FC = ({ children }) => {
-  return <CustomCursorProvider>{children}</CustomCursorProvider>;
+  return <div>{children}</div>;
 };
 
 export default AppContextProvider;

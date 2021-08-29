@@ -3,32 +3,29 @@
   height: 100vh;
   max-width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: $background-home;
-  user-select: none;
-}
-
-.home-section-content-wrapper {
-  position: relative;
-  display: flex;  
   flex-direction: column;
-  height: 70%;
-  min-width: 70%;
-  max-width: 80%;  
+  justify-content: flex-end;
+  align-items: center;
+  user-select: none;
+  background-color: $background;
 }
 
 .home-section-text-wrapper {
   position: relative;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;  
+  align-items: flex-start;
   margin: 0 auto;
   justify-content: center;
   flex-direction: column;
+  height: 80vh;
+  min-width: 90%;
+  width: 90%;  
+  background-color: $background-home;
+  color: $font-color-home;
+  padding: 0 5vw;
   overflow: hidden;
-  height: 60%;  
-  min-width: 100%;
+  z-index: $in-middle;
 }
 .home-section-text-subtitle,
 .home-section-text-title,
@@ -44,7 +41,6 @@
   font-size: clamp(40px, 8vw, 80px);
   max-width: 100%;
   font-weight: bolder;
-  color: $font-color-heading;
 }
 .home-section-text-paragraph {
   font-size: clamp(15px, 20px, 16px);
@@ -52,7 +48,62 @@
   max-width: 50ch;
 }
 
+.home-marquee {
+  transform: rotate(-40deg);
+  background-color: $background;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: bottom;
+  right: -100%;
+  bottom: 25%;
+  height: 50px;
+  width: 200%;
+  z-index: $in-front;
+
+  .marquee_text_wrapper {
+    span {
+      color: black;
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-weight: 700;
+      line-height: 1em;
+      letter-spacing: -0.04em;
+    }
+  }
+}
+
+.home-section-footer {
+  overflow: hidden;
+  width: 90%;
+  height: 10vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.home-section-footer-label {
+  font-size: 15px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.7em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 @media (max-width: $layout-breakpoint-small) {
+  .home-section {
+    height: 100vh;
+    padding: 5vh 0;
+  }
+  .home-section-text-wrapper {
+    height: 70vh;
+  }
   .home-section-text-paragraph {
     font-size: small;
   }

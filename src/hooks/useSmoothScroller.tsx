@@ -2,6 +2,7 @@ import Scrollbar from "smooth-scrollbar";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 gsap.registerPlugin(ScrollTrigger);
 
 const useSmoothScroller = () => {
@@ -9,6 +10,7 @@ const useSmoothScroller = () => {
   const [scroller, setScroller] = useState<Scrollbar | null>(null);
 
   useEffect(() => {
+    if(isMobile) return
     if (container) {
       setTimeout(() => {
         let bodyScrollbar = Scrollbar.init(container, {
@@ -29,7 +31,7 @@ const useSmoothScroller = () => {
           },
         });
         bodyScrollbar.addListener(ScrollTrigger.update);
-      });
+      });      
     }
   }, [container]);
 

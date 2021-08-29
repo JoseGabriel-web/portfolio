@@ -3,10 +3,6 @@ import Logo from "@components/Logo/Logo";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { FC } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  useHandleMouseOver,
-  useHandleMouseLeave,
-} from "@context/customCursor/CustomCursorProvider";
 import sections from "@assets/data/links";
 
 interface props {
@@ -93,12 +89,10 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
   const handleCloseNavMenu = () => {
     setIsNavMenuOpened(false);
   };
-  const handleMouseOver = useHandleMouseOver();
-  const handleMouseLeave = useHandleMouseLeave();
   const history = useHistory();
 
   const handleLink = () => {
-    setIsNavMenuOpened(false)
+    setIsNavMenuOpened(false);
   };
 
   return (
@@ -146,14 +140,10 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
                         }}
                         variants={linksVariants}
                         onClick={(e) => handleLink()}
+                        className="check-hover"
                       >
                         <motion.span>00{index + 1}</motion.span>
-                        <motion.h2
-                          onMouseOver={handleMouseOver}
-                          onMouseLeave={handleMouseLeave}
-                        >
-                          {label}
-                        </motion.h2>
+                        <motion.h2>{label}</motion.h2>
                       </motion.div>
                     </motion.div>
                   ))}

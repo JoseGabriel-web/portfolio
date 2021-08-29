@@ -1,8 +1,4 @@
 import { FC } from "react";
-import {
-  useHandleMouseOver,
-  useHandleMouseLeave,
-} from "@context/customCursor/CustomCursorProvider";
 
 interface marqueeProps {
   title: string;
@@ -19,14 +15,10 @@ const Marquee: FC<marqueeProps> = ({
   direction,
   handleClick,
 }) => {
-  const handleMouseOver = useHandleMouseOver();
-  const handleMouseLeave = useHandleMouseLeave();
   return (
     <div
-      className="marquee"
+      className="marquee check-hover"
       onClick={handleClick}
-      onMouseOver={handleMouseOver}
-      onMouseLeave={handleMouseLeave}
     >
       <div
         className={`marquee_text_wrapper ${isPlaying && "playing"}`}

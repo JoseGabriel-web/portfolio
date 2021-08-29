@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, FC, useRef } from "react";
 import NavMenu from "@components/NavMenu/NavMenu";
 import useSmoothScroller from "@hooks/useSmoothScroller";
-import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
 
 
 const headerVariants = {
@@ -23,13 +22,15 @@ const headerVariants = {
 const Layout: FC = ({ children }) => {
   const containerRef = useRef<HTMLDivElement>(document.createElement("div"));
   const [loading, setLoading] = useState<boolean>(true);
-  const [isNavMenuOpened, setIsNavMenuOpened] = useState<boolean>(false);  
+  const [isNavMenuOpened, setIsNavMenuOpened] = useState<boolean>(false);    
   useSmoothScroller()
+  
+  
   
   // Runs after loader animation
   function handleStart() {
     setTimeout(() => {
-      setLoading(false);      
+      setLoading(false);
     }, 500);
   }
 
@@ -57,7 +58,7 @@ const Layout: FC = ({ children }) => {
               />
             </motion.div>
           </motion.main>
-        )}        
+        )}
       </AnimatePresence>
     </AppContextProvider>
   );

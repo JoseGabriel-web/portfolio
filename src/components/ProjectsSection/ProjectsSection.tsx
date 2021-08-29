@@ -1,8 +1,7 @@
-import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useRef, useEffect } from "react";
-import projects from '@assets/data/projects'
+import projects from "@assets/data/projects";
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectsSection = () => {
@@ -12,7 +11,7 @@ const ProjectsSection = () => {
   const totalProjects = projects.length;
   useEffect(() => {
     setTimeout(() => {
-      let panels = gsap.utils.toArray(".project-wrapper");
+      let panels = gsap.utils.toArray(".project-wrapper");      
       gsap.to(panels, {
         xPercent: -100 * (totalProjects - 1),
         ease: "none",
@@ -22,6 +21,7 @@ const ProjectsSection = () => {
           scrub: 0.5,
           snap: 1 / (totalProjects - 1),
           pinType: "transform",
+          anticipatePin: 1
         },
       });
       ScrollTrigger.refresh();
@@ -35,7 +35,6 @@ const ProjectsSection = () => {
           <Item src={src} title={title} />
         ))}
       </div>
-      <VerticalIndicator label="PROJECTS" />
     </div>
   );
 };
@@ -44,8 +43,8 @@ export default ProjectsSection;
 
 const Item = ({ src, title }: { src: string; title: string }) => {
   return (
-    <div className="project-wrapper">      
-      <img src={src} alt={title} />      
+    <div className="project-wrapper">
+      <img src={src} alt={title} />
     </div>
   );
 };

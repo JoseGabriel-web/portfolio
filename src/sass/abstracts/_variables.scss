@@ -2,26 +2,26 @@
 $layout-breakpoint-medium: 960px;
 $layout-breakpoint-small: 767px;
 
-/* Colors */
-
 /* backgrounds */
-$background: #F9F9F9;
-$background-loader: #0D0D0D;
-$background-home: $background;
+$background: #FFFFFF;
+$background-home: #1F1D1F;
 $background-about: $background;
 $background-menu: $background;
 $background-menu-dark: #000;
+$background-loader: #1F1D1F;
 
+/* colors */
+$color-secondary: #8d01ff;
 
 /* fonts */
-$font-color: #231F20;
-$font-color-heading: black;
+$font-color: #2E2E2E;
+$font-color-heading: #2E2E2E;
+$font-color-home: white;
 $font-color-conditional: white;
 $font-color-light: #B8B8AF;
 $font-color-marquee: $font-color-light;
 $font-color-marquee: #ebebeb;
 $font-color-loader: white;
-
 
 /* Z-index */
 $in-front: 100;
@@ -29,11 +29,3 @@ $in-middle: 50;
 $in-back: 0;
 
 
-$font-color-marquee: #FFF;
-
-$background: #E5E5E5;
-$background-home: $background;
-$background-about: $background;
-$background-menu: $background;
-$background-menu-dark: #000;
-$font-color-marquee: #FFF;

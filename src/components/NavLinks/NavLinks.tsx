@@ -1,17 +1,11 @@
 import sections from "@assets/data/links";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { FC } from "react";
-import {
-  useHandleMouseOver,
-  useHandleMouseLeave,
-} from "@context/customCursor/CustomCursorProvider";
 import scrollIntoView from "@helpers/scrollIntoView";
 
 const NavLinks: FC = () => {
   const location = useLocation();
   const history = useHistory()
-  const handleMouseOver = useHandleMouseOver();
-  const handleMouseLeave = useHandleMouseLeave();
 
   const handleClick = ({ path, hash }: { path: string, hash: string | undefined }) => {
     history.push(path)
@@ -24,11 +18,9 @@ const NavLinks: FC = () => {
     <ul className="links-wrapper">
       {sections.map(({ hash, label, path }) => (
         <Link
-          onMouseOver={handleMouseOver}
-          onMouseLeave={handleMouseLeave}
           to={`${!!hash ? path : path + hash}`}
           onClick={() => handleClick({ hash, path })}
-          className={`link ${
+          className={`link check-hover ${
             location.pathname.includes(label) || hash === location.hash
               ? "link__selected"
               : ""

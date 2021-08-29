@@ -5,7 +5,7 @@ import Scrollbar from "smooth-scrollbar";
 
 const useIsVisible = (elementRef: MutableRefObject<any>): boolean => {
   const [scrollerChange, setScrollerChange] = useState(0);
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     let scroller = getScroller();

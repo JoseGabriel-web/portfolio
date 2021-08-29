@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { FC } from "react";
+import { motion } from "framer-motion";
 
 interface props {
   handleStart(): void

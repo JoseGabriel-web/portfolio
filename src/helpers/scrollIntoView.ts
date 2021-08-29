@@ -8,4 +8,4 @@ const scrollIntoView = (hash: string) => {
   }
 };
 
-export default scrollIntoView
+export default scrollIntoView;

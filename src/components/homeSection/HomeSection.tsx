@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
-import { FC, useState } from "react";
+import { FC, useState, useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import useIsVisible from "@hooks/useIsVisible";
+import scrollIntoView from "@helpers/scrollIntoView";
 import Marquee from "@components/Marquee/Marquee";
-import { useLocation } from "react-router-dom";
-import VerticalIndicator from "@components/VerticalIndicator/VerticalIndicator";
+import Tilt from "react-parallax-tilt";
+import { isMobile } from "react-device-detect";
 
 const easing = [0.455, 0.03, 0.515, 0.955];
 
@@ -36,19 +39,37 @@ const staggerContainer = {
 const HomeSection: FC = () => {
   const [isMarqueePlaying, setIsMarqueePlaying] = useState(false);
   const [direction, setDirection] = useState<"normal" | "reverse">("normal");
-  const { pathname } = useLocation();
+
+  const ref = useRef<HTMLElement | null>(null);
+  const isVisible = useIsVisible(ref);
+  const history = useHistory();
+
+  const handleScrollDown = () => {
+    scrollIntoView("#about");
+  };
+
+  useEffect(() => {
+    if (isVisible) {
+      history.push("/home");
+    }
+  }, [isVisible]);
 
   return (
-    <motion.section key={pathname} data-scroll-section className="home-section">      
-      <motion.div className="home-section-content-wrapper">
-        <motion.div
-          key="w"
-          variants={staggerContainer}
-          initial="exit"
-          animate="enter"
-          exit="exit"
-          className="home-section-text-wrapper"
-        >
+    <motion.section
+      ref={ref}
+      key={"asdawd22"}
+      data-scroll-section
+      className="home-section"
+    >
+      <motion.div
+        key="w"
+        variants={staggerContainer}
+        initial="exit"
+        animate="enter"
+        exit="exit"
+        className="home-section-text-wrapper"
+      >
+      <Tilt tiltMaxAngleY={10} tiltMaxAngleX={10} tiltEnable={!isMobile}>
           <motion.div key="a" variants={itemVariants}>
             <h3 className="home-section-text-subtitle">HEY, MY NAME IS</h3>
           </motion.div>
@@ -79,22 +100,30 @@ const HomeSection: FC = () => {
           >
             <p className="home-section-text-paragraph">
               Im a full stack developer, currently focused on expanding my
-              knowdledge and skills, by creating clean looking & functional projects.
+              knowdledge and skills, by creating clean looking & functional
+              projects.
             </p>
           </motion.div>
-        </motion.div>
-        
-        <Marquee
-          title={"LET'S WORK TOGETHER"}
+          </Tilt>
+        {/* <div className="home-marquee">
+          <Marquee
+          title="Let's work together"
           isPlaying={isMarqueePlaying}
-          duration={7}
-          direction={direction}
-          handleClick={() =>
-            setDirection(direction === "normal" ? "reverse" : "normal")
-          }
-        />
+          handleClick={() => setIsMarqueePlaying((prev) => !prev)}
+          direction="normal"
+          duration={8}
+          />
+        </div> */}
       </motion.div>
-      <VerticalIndicator label={"HOME"} />
+
+      <div className="home-section-footer">
+        <h2
+          className="home-section-footer-label check-hover"
+          onClick={handleScrollDown}
+        >
+          scroll down
+        </h2>
+      </div>
     </motion.section>
   );
 };

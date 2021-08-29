@@ -1,10 +1,10 @@
 import NavMenuSVG from "@assets/icon/NavMenuSVG";
 import Logo from "@components/Logo/Logo";
 import NavLinks from "@components/NavLinks/NavLinks";
+import scrollTo from "@helpers/scrollTo";
 import usePageOffset from "@hooks/usePageOffset";
-import { FC, useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import Scrollbar from "smooth-scrollbar";
+import { FC } from "react";
+import { Link } from "react-router-dom";
 
 interface props {
   setIsNavMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,15 +12,17 @@ interface props {
 
 const Navigation: FC<props> = ({ setIsNavMenuOpened }) => {
   const openNavMenu = () => setIsNavMenuOpened(true);
-  const { top, left } = usePageOffset()
+  const { top, left } = usePageOffset();
+
+  const handleLogo = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault()
+    scrollTo(0, 0);
+    setIsNavMenuOpened(false);
+  };
 
   return (
-    <nav id="nav" style={top && left ? { top, left } : {}}>
-      <Link
-        className="nav-logo-wrapper"
-        to="/"
-        onClick={() => setIsNavMenuOpened(false)}
-      >
+    <nav id="nav" style={{ top: `${top}px` }}>
+      <Link className="nav-logo-wrapper" to="/" onClick={(e) => handleLogo(e)}>
         <Logo />
       </Link>
       <div className="nav-actions-wrapper">
