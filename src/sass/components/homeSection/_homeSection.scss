@@ -20,17 +20,19 @@
   flex-direction: column;
   height: 80vh;
   min-width: 90%;
-  width: 90%;  
-  background-color: $background-home;
+  width: 90%;    
   color: $font-color-home;
   padding: 0 5vw;
   overflow: hidden;
   z-index: $in-middle;
+  // pointer-events: none;
 }
 .home-section-text-subtitle,
 .home-section-text-title,
 .home-section-text-paragraph {
+  position: relative;
   line-height: 1.5;
+  background-color: $background-home;
 }
 .home-section-text-subtitle {
   font-size: 20px;
@@ -40,38 +42,12 @@
 .home-section-text-title {
   font-size: clamp(40px, 8vw, 80px);
   max-width: 100%;
-  font-weight: bolder;
+  font-weight: bolder;  
 }
 .home-section-text-paragraph {
   font-size: clamp(15px, 20px, 16px);
   margin-top: 20px;
   max-width: 50ch;
-}
-
-.home-marquee {
-  transform: rotate(-40deg);
-  background-color: $background;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform-origin: bottom;
-  right: -100%;
-  bottom: 25%;
-  height: 50px;
-  width: 200%;
-  z-index: $in-front;
-
-  .marquee_text_wrapper {
-    span {
-      color: black;
-      text-transform: uppercase;
-      white-space: nowrap;
-      font-weight: 700;
-      line-height: 1em;
-      letter-spacing: -0.04em;
-    }
-  }
 }
 
 .home-section-footer {
@@ -90,6 +66,7 @@
   line-height: 1.5;
   font-weight: 700;
   letter-spacing: 0.7em;
+  color: black;
 
   &:hover {
     cursor: pointer;

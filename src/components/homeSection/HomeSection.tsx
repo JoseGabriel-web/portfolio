@@ -6,6 +6,7 @@ import scrollIntoView from "@helpers/scrollIntoView";
 import Marquee from "@components/Marquee/Marquee";
 import Tilt from "react-parallax-tilt";
 import { isMobile } from "react-device-detect";
+import Canvas from "@components/Canvas/Canvas";
 
 const easing = [0.455, 0.03, 0.515, 0.955];
 
@@ -41,6 +42,7 @@ const HomeSection: FC = () => {
   const [direction, setDirection] = useState<"normal" | "reverse">("normal");
 
   const ref = useRef<HTMLElement | null>(null);
+  const canvasContainerRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useIsVisible(ref);
   const history = useHistory();
 
@@ -68,8 +70,9 @@ const HomeSection: FC = () => {
         animate="enter"
         exit="exit"
         className="home-section-text-wrapper"
+        ref={canvasContainerRef}
       >
-      <Tilt tiltMaxAngleY={10} tiltMaxAngleX={10} tiltEnable={!isMobile}>
+        <Tilt tiltMaxAngleY={15} tiltMaxAngleX={15} tiltEnable={!isMobile}>
           <motion.div key="a" variants={itemVariants}>
             <h3 className="home-section-text-subtitle">HEY, MY NAME IS</h3>
           </motion.div>
@@ -104,16 +107,8 @@ const HomeSection: FC = () => {
               projects.
             </p>
           </motion.div>
-          </Tilt>
-        {/* <div className="home-marquee">
-          <Marquee
-          title="Let's work together"
-          isPlaying={isMarqueePlaying}
-          handleClick={() => setIsMarqueePlaying((prev) => !prev)}
-          direction="normal"
-          duration={8}
-          />
-        </div> */}
+        </Tilt>
+      <Canvas containerRef={canvasContainerRef} />
       </motion.div>
 
       <div className="home-section-footer">
