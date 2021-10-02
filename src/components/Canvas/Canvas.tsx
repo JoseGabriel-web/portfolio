@@ -124,16 +124,48 @@ const Canvas: FC<props> = ({ containerRef }) => {
     particles.forEach((particle) => particle.update());
   }
 
+  function randomHexColor(): string {
+    let result = [];
+    const hexCaracters = [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+    ];
+    for (let i = 0; i < 6; i++) {
+      let randomIndex = Math.floor(
+        Math.random() * (hexCaracters.length - 0) + 0,
+      );
+      let caracter = hexCaracters[randomIndex];
+      result.push(caracter)
+    }
+    
+    return "#" + result.join("");
+  }
+
   function initializeCanvas() {
     getCanvasContext();
     const particlesQuantity = (height * width) / 9000;
     for (let i = 0; i < particlesQuantity; i++) {
-      let size = Math.random() * 3;
+      let size = Math.random() * 4;
       let x = Math.random() * (width - size * 2);
       let y = Math.random() * (height - size * 2);
       let directionX = Math.random() * 0.4 - 0.2;
       let directionY = Math.random() * 0.4 - 0.2;
       let color = "#FFF";
+      // let color = randomHexColor();
       particles.push(
         new Particle({
           x,

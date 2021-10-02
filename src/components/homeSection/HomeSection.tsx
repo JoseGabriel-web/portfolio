@@ -1,12 +1,7 @@
-import { motion } from "framer-motion";
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 import useIsVisible from "@hooks/useIsVisible";
-import scrollIntoView from "@helpers/scrollIntoView";
-import Marquee from "@components/Marquee/Marquee";
-import Tilt from "react-parallax-tilt";
-import { isMobile } from "react-device-detect";
-import Canvas from "@components/Canvas/Canvas";
 
 const easing = [0.455, 0.03, 0.515, 0.955];
 
@@ -38,17 +33,9 @@ const staggerContainer = {
 };
 
 const HomeSection: FC = () => {
-  const [isMarqueePlaying, setIsMarqueePlaying] = useState(false);
-  const [direction, setDirection] = useState<"normal" | "reverse">("normal");
-
   const ref = useRef<HTMLElement | null>(null);
-  const canvasContainerRef = useRef<HTMLDivElement | null>(null);
   const isVisible = useIsVisible(ref);
   const history = useHistory();
-
-  const handleScrollDown = () => {
-    scrollIntoView("#about");
-  };
 
   useEffect(() => {
     if (isVisible) {
@@ -62,6 +49,7 @@ const HomeSection: FC = () => {
       key={"asdawd22"}
       data-scroll-section
       className="home-section"
+      id="home"
     >
       <motion.div
         key="w"
@@ -70,55 +58,44 @@ const HomeSection: FC = () => {
         animate="enter"
         exit="exit"
         className="home-section-text-wrapper"
-        ref={canvasContainerRef}
       >
-        <Tilt tiltMaxAngleY={15} tiltMaxAngleX={15} tiltEnable={!isMobile}>
-          <motion.div key="a" variants={itemVariants}>
-            <h3 className="home-section-text-subtitle">HEY, MY NAME IS</h3>
-          </motion.div>
-          <motion.div
-            key="b"
-            variants={itemVariants}
-            style={{ display: "flex" }}
-          >
-            {"JOSÉ _ GABRIEL".split("").map((letter) => (
-              <motion.span
-                data-scroll-speed={50}
-                style={{ display: "block" }}
-                whileHover={{
-                  y: -10,
-                  transition: { duration: 0.2, ease: easing },
-                }}
-                className="home-section-text-title"
-              >
-                {letter === "_" ? <span>&nbsp;&nbsp;&nbsp;</span> : letter}
-              </motion.span>
-            ))}
-          </motion.div>
-
-          <motion.div
-            key="c"
-            variants={itemVariants}
-            onAnimationComplete={() => setIsMarqueePlaying(true)}
-          >
-            <p className="home-section-text-paragraph">
-              Im a full stack developer, currently focused on expanding my
-              knowdledge and skills, by creating clean looking & functional
-              projects.
-            </p>
-          </motion.div>
-        </Tilt>
-      <Canvas containerRef={canvasContainerRef} />
-      </motion.div>
-
-      <div className="home-section-footer">
-        <h2
-          className="home-section-footer-label check-hover"
-          onClick={handleScrollDown}
+        <motion.div key="a" variants={itemVariants}>
+          <h3 className="home-section-text-subtitle">HEY, MY NAME IS</h3>
+        </motion.div>
+        <motion.div
+          key="b"
+          variants={itemVariants}
+          className="home-section-text-title"
         >
-          scroll down
-        </h2>
-      </div>
+          <span>JOSÉ</span> GABRIEL
+        </motion.div>
+        {/* <motion.div
+          key="b"
+          variants={itemVariants}
+          className="home-section-text-title"
+        >
+          MERCEDES <span>GERONIMO</span>
+        </motion.div> */}
+
+        <motion.div key="c" variants={itemVariants}>
+          <p className="home-section-text-paragraph">
+            Im a full stack developer, currently focused on expanding my
+            knowdledge and skills, by creating functional & clean looking
+            projects.
+          </p>
+        </motion.div>
+
+        <motion.a
+          key="d"
+          variants={itemVariants}
+          className="home-section-hire-me-btn check-hover"
+          href="mailto:chillelimon1111@gmail.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          hire me
+        </motion.a>
+      </motion.div>
     </motion.section>
   );
 };

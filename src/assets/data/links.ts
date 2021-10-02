@@ -1,7 +1,7 @@
 interface SectionPathInformation {
   label: string;
   path: string;
-  hash?: string;
+  hash: string;
 }
 
 const sections: SectionPathInformation[] = [

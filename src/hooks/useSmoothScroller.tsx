@@ -16,7 +16,7 @@ const useSmoothScroller = () => {
         let bodyScrollbar = Scrollbar.init(container, {
           damping: 0.04,
           thumbMinSize: 20,
-          alwaysShowTracks: true,
+          alwaysShowTracks: false,          
           delegateTo: document,
         });
         setScroller(bodyScrollbar);

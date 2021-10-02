@@ -1,6 +1,6 @@
 nav {
   position: fixed;
-  height: 100%;  
+  height: 100%;
   width: 90%;
   max-width: 90%;
   display: flex;
@@ -9,6 +9,7 @@ nav {
   left: 50%;
   transform: translateX(-50%);
   text-transform: uppercase;
+  background-color: $background;
 }
 
 .nav-logo-wrapper,
@@ -32,6 +33,11 @@ nav {
   font-weight: bolder;
   letter-spacing: 0.1em;
   z-index: $in-front + 2;
+
+  background-clip: text;
+  background: $font-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav-mobile-btn-wrapper {
@@ -50,7 +56,7 @@ nav {
   left: 0;
   width: 100%;
   height: 0;
-  border-top: solid 2px $font-color-conditional;
+  border-top: solid 2px;
 }
 .nav-menu-icon::before {
   transform: translateY(-3px);
@@ -71,13 +77,28 @@ nav {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    width: 60%;
+    width: 50%;
   }
   .link {
-    position: relative;    
+    position: relative;
     font-size: 15px;
     text-transform: uppercase;
     line-height: 1.5;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      height: 0px;
+      border: solid 1px;
+      background-color: black;
+      right: 0;
+      left: unset;
+      width: 0%;
+      transition: width 0.2s ease-out;
+      opacity: 0;
+      animation: fadeAway 0.2s linear;
+    }
 
     &__selected::after {
       content: "";
@@ -89,28 +110,35 @@ nav {
       border: solid 1px;
       background-color: black;
       animation: extend 0.2s linear;
+      opacity: 1;
+    }
+
+    @keyframes fadeAway {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
     }
 
     &:hover {
       &::after {
-        content: "";
-        position: absolute;
-        top: 100%;
         left: 0;
-        height: 0px;
         width: 100%;
+        opacity: 1;
         border: solid 1px;
         background-color: black;
         animation: extend 0.2s linear;
       }
+    }
 
-      @keyframes extend {
-        0% {
-          width: 0%;
-        }
-        100% {
-          width: 100%;
-        }
+    @keyframes extend {
+      0% {
+        width: 0%;
+      }
+      100% {
+        width: 100%;
       }
     }
   }

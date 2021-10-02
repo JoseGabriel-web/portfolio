@@ -3,25 +3,18 @@ $layout-breakpoint-medium: 960px;
 $layout-breakpoint-small: 767px;
 
 /* backgrounds */
-$background: #FFFFFF;
-$background-home: #1F1D1F;
+// $background: #EAEFF2;
+$background: #F4F4F4;
 $background-about: $background;
 $background-menu: $background;
 $background-menu-dark: #000;
-$background-loader: #1F1D1F;
-
-/* colors */
-$color-secondary: #8d01ff;
+$background-loader: #000;
 
 /* fonts */
-$font-color: #2E2E2E;
-$font-color-heading: #2E2E2E;
-$font-color-home: white;
+$font-color: black;
 $font-color-conditional: white;
-$font-color-light: #B8B8AF;
-$font-color-marquee: $font-color-light;
-$font-color-marquee: #ebebeb;
 $font-color-loader: white;
+$font-gradient: linear-gradient(75deg, rgba(4,0,226,0.835171568627451) 61%, rgba(33,89,200,1) 86%, rgba(51,115,242,0.835171568627451) 100%);
 
 /* Z-index */
 $in-front: 10;
@@ -29,3 +22,5 @@ $in-middle: 5;
 $in-back: -1;
 
 
+// $background: #EAEFF2;
+// $background: #F4F4F4;

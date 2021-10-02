@@ -3,7 +3,7 @@ const getScroller = () => {
   const body = document.querySelector("body");
   if (body) {
     let scroller = Scrollbar.get(body);
-    if (scroller) {
+    if (scroller) {      
       return scroller;
     }
   }

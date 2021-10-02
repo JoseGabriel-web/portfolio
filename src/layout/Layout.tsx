@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState, FC, useRef } from "react";
 import NavMenu from "@components/NavMenu/NavMenu";
 import useSmoothScroller from "@hooks/useSmoothScroller";
+import FixedBottom from "@components/FixedBottom/FixedBottom";
 
 
 const headerVariants = {
@@ -56,6 +57,7 @@ const Layout: FC = ({ children }) => {
                 setIsNavMenuOpened={setIsNavMenuOpened}
                 isNavMenuOpened={isNavMenuOpened}
               />
+              <FixedBottom />
             </motion.div>
           </motion.main>
         )}

@@ -6,3 +6,12 @@ body {
   max-height: 100vh;
   max-width: 100%;
 }
+
+.check-hover {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.scrollbar-thumb {
+  display: none;
+}

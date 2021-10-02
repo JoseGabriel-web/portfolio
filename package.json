@@ -22,7 +22,6 @@
     "react": "^17.0.2",
     "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.2",
-    "react-parallax-tilt": "^1.5.57",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "smooth-scrollbar": "^8.6.3",

@@ -7,9 +7,7 @@ header {
   width: 100%;
   max-width: 100%;
   z-index: $in-front;
-  background-color: transparent;
-  color: $font-color-conditional;
-  mix-blend-mode: difference;
   transition: color cubic-bezier(.17,.67,.83,.67);
-  text-transform: uppercase;
+  text-transform: uppercase;  
+  background-color: $background;
 }
