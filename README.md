@@ -1,4 +1,4 @@
-# :earth_americas: BeyondNear
+# :earth_americas: My Portfolio
 
 BeyondNear es un smart contract bajo el Near protocol, el cual permite crear campañas para la recaudacion de fondos en nears dedicados a una causa especifica. Este smart contract permite:
 

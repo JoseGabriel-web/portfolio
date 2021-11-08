@@ -34,14 +34,14 @@ const staggerContainer = {
 
 const HomeSection: FC = () => {
   const ref = useRef<HTMLElement | null>(null);
-  const isVisible = useIsVisible(ref);
-  const history = useHistory();
+  // const isVisible = useIsVisible(ref);
+  // const history = useHistory();
 
-  useEffect(() => {
-    if (isVisible) {
-      history.push("/home");
-    }
-  }, [isVisible]);
+  // useEffect(() => {
+  //   if (isVisible) {
+  //     history.push("/#home");
+  //   }
+  // }, [isVisible]);
 
   return (
     <motion.section
@@ -69,16 +69,9 @@ const HomeSection: FC = () => {
         >
           <span>JOSÉ</span> GABRIEL
         </motion.div>
-        {/* <motion.div
-          key="b"
-          variants={itemVariants}
-          className="home-section-text-title"
-        >
-          MERCEDES <span>GERONIMO</span>
-        </motion.div> */}
 
         <motion.div key="c" variants={itemVariants}>
-          <p className="home-section-text-paragraph">
+          <p>
             Im a full stack developer, currently focused on expanding my
             knowdledge and skills, by creating functional & clean looking
             projects.
@@ -93,7 +86,7 @@ const HomeSection: FC = () => {
           rel="noopener noreferrer"
           target="_blank"
         >
-          hire me
+          {"<"}hire me {"/>"}
         </motion.a>
       </motion.div>
     </motion.section>

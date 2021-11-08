@@ -12,7 +12,7 @@ const App = () => {
             <Route key={JSON.stringify(Component)} exact={exact} path={path}>
               <Component key={JSON.stringify(Component) + "1"} />
             </Route>
-          ))}
+          ))}          
         </Switch>
       </Layout>
   );

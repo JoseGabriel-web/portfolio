@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useLocation } from "react-router";
 import SocialLink from "./SocialLink";
+import socialLinks from '@assets/data/socialLinks'
 
 const easing = [0.455, 0.03, 0.515, 0.955];
 
@@ -48,53 +49,28 @@ const itemRightVariants = {
 };
 
 const FixedBottom = () => {
-  const socialLinks = [
-    {
-      url: "https://github.com/JoseGabriel-web",
-      icon: <GithubSvg />,
-    },
-    {
-      url: "https://www.linkedin.com/in/jose-gabriel-3993071ab/",
-      icon: <LinkedInSVG />,
-    },
-    {
-      url: "https://www.linkedin.com/in/jose-gabriel-3993071ab/",
-      icon: <TwitterSVG />,
-    },
-    {
-      url: "https://www.instagram.com/josegabrielmer",
-      icon: <TelegramSVG />,
-    },
-  ];
+  
 
   const { top } = usePageOffset();
   const { hash } = useLocation();
-  const [pathIndex, setPathIndex] = useState(0);
-  const sections = ["home", "about"];
+  const [pathSelected, setPathSelected] = useState("");
+  const sections = ["#home", "#about"];
+
+  useEffect(() => {
+    setPathSelected(hash)
+  }, [hash])
 
   const handleScrollPrev = () => {
-    scrollIntoView("#" + sections[pathIndex - 1]);
-    setPathIndex((prev) => prev - 1);
+    const currentIndex = sections.indexOf(pathSelected)
+    if(currentIndex === 0) return
+    scrollIntoView(sections[currentIndex - 1])
   };
+
   const handleScrollNext = () => {
-    scrollIntoView("#" + sections[pathIndex + 1]);
-    setPathIndex((prev) => prev + 1);
+    const currentIndex = sections.indexOf(pathSelected)
+    if(currentIndex === sections.length) return
+    scrollIntoView(sections[currentIndex + 1])
   };
-
-  const setPathnameIndex = () => {
-    let formatedHash = hash.replaceAll("#", "");
-    let index = sections.indexOf(formatedHash === "" ? "home" : formatedHash);
-    setPathIndex(index);
-    console.log({ formatedHash, index });
-  };
-
-  useEffect(() => {
-    setPathnameIndex();
-  }, [hash]);
-
-  useEffect(() => {
-    setPathnameIndex();
-  }, []);
 
   return (
     <motion.div className="fixed-bottom-wrapper" style={{ top: top + "px" }}>
@@ -106,10 +82,10 @@ const FixedBottom = () => {
         exit="exit"
         style={{ overflow: !isMobile ? "hidden" : "auto" }}
       >
-        {socialLinks.map(({ url, icon }, index) => (
+        {socialLinks.map(({ url, Icon }, index) => (
           <SocialLink
             url={url}
-            icon={icon}
+            icon={<Icon />}
             variants={itemLeftVariants}
             key={index}
           />
@@ -128,7 +104,6 @@ const FixedBottom = () => {
           <span
             onClick={handleScrollPrev}
             className="check-hover"
-            style={{ pointerEvents: pathIndex === 0 ? "none" : "all" }}
           >
             prev -
           </span>
@@ -136,11 +111,8 @@ const FixedBottom = () => {
           <span
             onClick={handleScrollNext}
             className="check-hover"
-            style={{
-              pointerEvents: pathIndex === sections.length - 1 ? "none" : "all",
-            }}
           >
-            - Next
+            - next
           </span>
         </motion.h2>
       </motion.div>

@@ -19,7 +19,7 @@ const Canvas: FC<props> = ({ containerRef }) => {
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const fillColor = "#1F1D1F";
+  const fillColor = "#fff";
   const particles: Particle[] = [];
   let mouse = useRef({
     x: 0,
@@ -157,15 +157,15 @@ const Canvas: FC<props> = ({ containerRef }) => {
 
   function initializeCanvas() {
     getCanvasContext();
-    const particlesQuantity = (height * width) / 9000;
+    const particlesQuantity = (height * width) / 60000;
     for (let i = 0; i < particlesQuantity; i++) {
       let size = Math.random() * 4;
       let x = Math.random() * (width - size * 2);
       let y = Math.random() * (height - size * 2);
       let directionX = Math.random() * 0.4 - 0.2;
       let directionY = Math.random() * 0.4 - 0.2;
-      let color = "#FFF";
-      // let color = randomHexColor();
+      /* PARTICLES COLOR */
+      let color = "#000" || "#c2c2c2";
       particles.push(
         new Particle({
           x,

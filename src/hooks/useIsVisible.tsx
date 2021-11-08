@@ -17,9 +17,9 @@ const useIsVisible = (elementRef: MutableRefObject<any>): boolean => {
   }, [scrollerChange]);
 
   useEffect(() => {
-    let scroller = getScroller()
+    const scroller = getScroller()
     if (scroller && elementRef) {      
-      setIsVisible(scroller.isVisible(elementRef.current));
+      setIsVisible(scroller.isVisible(elementRef.current));      
     }
   }, [elementRef, scrollerChange]);
 

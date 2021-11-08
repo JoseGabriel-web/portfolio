@@ -12,53 +12,48 @@
 
 .home-section-text-wrapper {
   position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin: 0 auto;
+  display: flex;  
+  align-items: flex-start;  
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
-  width: 70%;
-  min-width: 70%;
-  max-width: 70%;
+  height: 100vh;  
+  width: 500px;
+  min-width: 60%;
+  max-width: 75%;
+  margin: auto;
   color: $font-color;
   z-index: $in-middle;
   overflow: hidden;
 
-  align-items: center;
-  // text-align: center;
+  p {
+    max-width: 50ch;
+  }
 }
 .home-section-text-subtitle,
-.home-section-text-title,
-.home-section-text-paragraph {
-  position: relative;
-  line-height: 1.5;
+.home-section-text-title {
+  position: relative;  
 }
 .home-section-text-subtitle {
   font-size: 20px;
   max-width: 100%;
-  font-weight: bolder;
+  font-weight: 600;
 }
 .home-section-text-title {
   font-size: clamp(40px, 8vw, 80px);
-  max-width: 100%;
-  font-weight: bolder;
-
+  max-width: 100%;  
+  font-weight: 900;
+  position: relative;
+  
   span {
     font-size: clamp(40px, 8vw, 80px);
     max-width: 100%;
-    // background-clip: text;
-    // background: $font-gradient;
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background: $font-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
-.home-section-text-paragraph {
-  font-size: clamp(10px, 20px, 16px);
-  margin-top: 20px;
-  max-width: 50ch;
-}
+
 .home-section-hire-me-btn {
   position: relative;
   min-width: 100px;
@@ -97,11 +92,5 @@
     &::before {
       height: 100%;
     }
-  }
-}
-
-@media (max-width: $layout-breakpoint-small) {
-  .home-section-text-paragraph {
-    font-size: small;
   }
 }
