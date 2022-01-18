@@ -1,13 +1,13 @@
-// background-color: #df6e1111;
 .projects-desktop-wrapper {
+  // border: solid;
   position: relative;
   background-color: $background;
-  overflow: hidden !important;  
+  overflow: hidden !important;
 }
+
 .projects-desktop {
   background-color: $background;
   padding: 10vh 0;
-  width: 400%;
   display: flex;
   flex-wrap: nowrap;
   height: 100vh;
@@ -30,13 +30,12 @@
 
 .project-desktop-img-wrapper {
   display: inline-block;
-  width: 55%;
-  height: 70%;
-//   border: solid 1px;
   position: relative;
+  width: 55%;
+  height: auto;
   border-radius: 10px;
   overflow: hidden;
-
+  
   img {
     display: inline-block;
     aspect-ratio: 16/9;
@@ -45,11 +44,12 @@
     transform-origin: center;
     border-radius: 10px;
     will-change: transform;
-    height: 100%;
-    width: 100%;
-    transition: all .2s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
     filter: grayscale(100%);
     filter: brightness(30%);
+    width: 100%;
+    height: auto;
+    max-height: 70%;
   }
 }
 
@@ -60,43 +60,49 @@
   right: 10%;
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   pointer-events: all;
   color: white;
-  transition: all .2s cubic-bezier(0.77, 0, 0.175, 1);
-  
+  transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+
   h1 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: clamp(40px, 8vw, 80px);
-      max-width: 100%;
-      font-weight: bolder;
-      font-weight: 900;
-      position: relative;
-      text-transform: uppercase;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(2vw, 6vw, 8vw);
+    max-width: 100%;
+    font-weight: bolder;
+    font-weight: 900;
+    position: relative;
+    text-transform: uppercase;
+  }
 }
 
 .project-desktop-circle {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: rgb(235, 154, 92);
-    width: 50px;
-    height: 50px;    
-    border-radius: 100%;
-    mix-blend-mode: hard-light;
-    transition: all .2s cubic-bezier(0.77, 0, 0.175, 1);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  mix-blend-mode: hard-light;
+  transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+  background-clip: content-box;
+  background: rgba($color: #000000, $alpha: 0.7);
+  -webkit-background-clip: content-box;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-desktop-github {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  color: white;
 }
 
 .project-desktop-img-wrapper:hover {
-    img {
-        // filter: grayscale(0);
-        // filter: brightness(normal);
-    }
-
-    .project-desktop-circle {
-        transform: scale(16);
-    }
+  .project-desktop-circle {
+    transform: scale(16);
+  }
 }

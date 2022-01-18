@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { isBrowser } from "react-device-detect";
 
-const CustomCursor = () => {
+const CustomCursor = ({ updateDependencies }: {updateDependencies: Array<any>}) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [offsetTop, setOffsetTop] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
@@ -24,7 +24,7 @@ const CustomCursor = () => {
         });
       }
     });
-  }, []);
+  }, [...updateDependencies]);
 
   useEffect(() => {
     setOffsetTop(Number(top));

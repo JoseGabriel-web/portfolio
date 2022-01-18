@@ -3,8 +3,9 @@
   display: flex;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
+  max-width: 100%;  
   background-color: $background-menu-dark;
   z-index: $in-front + 1;
   // transform: skew(-5deg);  
@@ -17,7 +18,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
+  width: 100%;  
   background-color: $background-menu;
   z-index: $in-front + 1;
   transform: skew(-5deg);
@@ -29,6 +30,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: calc(100% - 40px);
+  width: 90%;
   margin: 0 auto;
   height: 10vh;
 }

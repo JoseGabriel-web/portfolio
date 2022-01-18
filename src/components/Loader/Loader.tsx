@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
+import { v4 as uuid } from "uuid"
 
 interface props {
   handleStart(): void
@@ -79,11 +80,11 @@ const Loader: FC<props> = ({ handleStart }) => {
       variants={containerVariants}
       initial="initial"
       animate="enter"
-      exit="exit"
+      exit="exit"      
     >
       <motion.div className="loader-logo">
         {logoCaracters.map((caracter) => (
-          <motion.span variants={itemVariants}>{caracter}</motion.span>
+          <motion.span key={uuid()} variants={itemVariants}>{caracter}</motion.span>
         ))}
       </motion.div>
       <motion.div className="loader-progress-bar">

@@ -1,7 +1,3 @@
-import GithubSvg from "@assets/svg/GithubSvg";
-import LinkedInSVG from "@assets/svg/LinkedInSVG";
-import TelegramSVG from "@assets/svg/TelegramSVG";
-import TwitterSVG from "@assets/svg/TwitterSVG";
 import scrollIntoView from "@helpers/scrollIntoView";
 import usePageOffset from "@hooks/usePageOffset";
 import { motion } from "framer-motion";

@@ -1,9 +1,13 @@
 import CloseSVG from "@assets/svg/CloseSVG";
 import Logo from "@components/Logo/Logo";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import sections from "@assets/data/links";
+import usePageOffset from "@hooks/usePageOffset";
+import useScrollTo from "@hooks/useScrollTo";
+import { useAppContext } from "@hooks/useAppContext";
+import { v4 as uuid } from "uuid";
 
 interface props {
   setIsNavMenuOpened: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +22,6 @@ const easing = [0.645, 0.045, 0.355, 1];
 const itemVariant = {
   initial: {
     x: initialAndExitPosition,
-    // skew: 5,
     transition: { ease: easing, duration: animateDuration },
   },
   enter: {
@@ -31,7 +34,6 @@ const itemVariant = {
   },
   exit: {
     x: initialAndExitPosition,
-    // skew: -5,
     transition: {
       ease: easing,
       duration: animateDuration,
@@ -43,7 +45,6 @@ const itemVariant = {
 const itemVariantMain = {
   initial: {
     x: initialAndExitPosition,
-    // skew: 5,
     transition: { ease: easing, duration: animateDuration },
   },
   enter: {
@@ -57,7 +58,6 @@ const itemVariantMain = {
   },
   exit: {
     x: initialAndExitPosition,
-    // skew: -5,
     transition: { ease: easing, duration: animateDuration },
   },
 };
@@ -86,6 +86,10 @@ const linksVariants = {
 };
 
 const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
+  const scrollTo = useScrollTo();
+  const { top } = usePageOffset();
+  const { smoothScroller } = useAppContext();
+
   const handleCloseNavMenu = () => {
     setIsNavMenuOpened(false);
   };
@@ -95,19 +99,28 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
     setIsNavMenuOpened(false);
   };
 
+  useEffect(() => {
+    if (smoothScroller) {
+      smoothScroller.updatePluginOptions("StopPlugin", {
+        isStopped: isNavMenuOpened,
+      });
+    }
+  }, [isNavMenuOpened]);
+
   return (
     <AnimatePresence>
       {isNavMenuOpened && (
         <motion.div
-          key={isNavMenuOpened + ""}
+          key={uuid()}
           variants={itemVariant}
           className="nav-menu-wrapper"
           initial="initial"
           animate="enter"
           exit="exit"
+          style={{ top: top + "px" }}
         >
           <motion.div
-            key={isNavMenuOpened + ""}
+            key={uuid()}
             initial="initial"
             animate="enter"
             exit="exit"
@@ -128,10 +141,7 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
                 <AnimatePresence key={isNavMenuOpened + ""}>
                   <h1>Menu</h1>
                   {sections.map(({ hash, path, label }, index) => (
-                    <motion.div
-                      className="nav-menu-link"
-                      key={isNavMenuOpened + ""}
-                    >
+                    <motion.div className="nav-menu-link" key={uuid()}>
                       <motion.div
                         whileHover={{
                           y: 3,
@@ -143,7 +153,18 @@ const NavMenu: FC<props> = ({ setIsNavMenuOpened, isNavMenuOpened }) => {
                         className="check-hover"
                       >
                         <motion.span>00{index + 1}</motion.span>
-                        <motion.h2>{label}</motion.h2>
+                        <motion.h2
+                          onClick={() =>
+                            scrollTo({
+                              hash,
+                              delay: animateDuration * 3,
+                              fixedHeight: 0,
+                              offset: null,
+                            })
+                          }
+                        >
+                          {label}
+                        </motion.h2>
                       </motion.div>
                     </motion.div>
                   ))}

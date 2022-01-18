@@ -5,9 +5,7 @@ import Loader from "@components/Loader/Loader";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, FC, useRef } from "react";
 import NavMenu from "@components/NavMenu/NavMenu";
-import useSmoothScroller from "@hooks/useSmoothScroller";
 import FixedBottom from "@components/FixedBottom/FixedBottom";
-
 
 const headerVariants = {
   enter: {
@@ -23,11 +21,8 @@ const headerVariants = {
 const Layout: FC = ({ children }) => {
   const containerRef = useRef<HTMLDivElement>(document.createElement("div"));
   const [loading, setLoading] = useState<boolean>(true);
-  const [isNavMenuOpened, setIsNavMenuOpened] = useState<boolean>(false);    
-  useSmoothScroller()
-  
-  
-  
+  const [isNavMenuOpened, setIsNavMenuOpened] = useState<boolean>(false);
+
   // Runs after loader animation
   function handleStart() {
     setTimeout(() => {
@@ -40,9 +35,9 @@ const Layout: FC = ({ children }) => {
       <AnimatePresence>
         {loading ? (
           <Loader handleStart={handleStart} />
-          ) : (
-            <motion.main ref={containerRef}>
-            <CustomCursor />
+        ) : (
+          <motion.main ref={containerRef} id="home">
+            <CustomCursor updateDependencies={[isNavMenuOpened]} />
             <motion.header
               variants={headerVariants}
               initial="exit"

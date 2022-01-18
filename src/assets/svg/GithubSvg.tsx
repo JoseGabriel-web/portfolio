@@ -1,10 +1,10 @@
-const GithubSvg = () => {
+const GithubSvg = ({ size, color }:{ size?: number, color?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill=""
+      width={size || 16}
+      height={size || 16}
+      fill={color}
       style={{ backgroundColor: "transparent" }}
       className="bi bi-github"
       viewBox="0 0 16 16"

@@ -1,0 +1,35 @@
+.projects-title-wrapper {
+  position: relative;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+  min-width: 60%;
+  max-width: 75%;
+  margin: auto;
+  margin-top: 20vh;
+  color: $font-color;
+  z-index: $in-middle;
+}
+
+.projects-title {
+  font-size: clamp(40px, 8vw, 80px);
+  max-width: 100%;
+  font-weight: 900;
+  position: relative;
+  text-transform: uppercase;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translate(-50%);
+    width: 70%;
+    height: 3px;
+    background: $font-gradient;
+  }
+}

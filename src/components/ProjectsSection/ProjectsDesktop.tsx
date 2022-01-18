@@ -3,6 +3,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 import Arrow from "@assets/svg/Arrow";
 import { Link } from "react-router-dom";
+import GithubSvg from "@assets/svg/GithubSvg";
+import { v4 as uuid } from "uuid";
 gsap.registerPlugin(ScrollTrigger);
 
 interface props {
@@ -10,6 +12,7 @@ interface props {
     image: string;
     title: string;
     link: string;
+    repository: string;
   }[];
 }
 
@@ -39,28 +42,56 @@ const ProjectsDesktop: FC<props> = ({ projects }) => {
   }, []);
 
   return (
-    <div
-      className="projects-desktop-wrapper"
-      id="projects"
-      ref={panelsContainer}
-    >
-      <div className="projects-desktop">
-        {projects.map(({ image, title, link }) => (
-          <Item image={image} link={link} title={title} />
+    <div className="projects-desktop-wrapper" ref={panelsContainer}>
+      <div
+        className="projects-desktop"
+        style={{ width: `calc(100% * ${projects.length})` }}
+      >
+        {projects.map(({ image, title, link, repository }) => (
+          <Item
+            key={uuid()}
+            image={image}
+            link={link}
+            title={title}
+            repository={repository}
+          />
         ))}
       </div>
     </div>
   );
 };
 
-const Item = ({ image, title, link }: { image: string; title: string; link: string }) => {
+const Item = ({
+  image,
+  title,
+  link,
+  repository,
+}: {
+  image: string;
+  title: string;
+  link: string;
+  repository: string;
+}) => {
   return (
-    <div className="project-desktop-wrapper">
+    <div className="project-desktop-wrapper" >
       <div className="project-desktop-img-wrapper">
         <img className="project-desktop-img" src={image} alt={title} />
         <div className="project-desktop-circle" />
-        <Link to={{ pathname: link }} target="_blank" className="project-desktop-title-wrapper check-hover">
-            <h1>{title} <Arrow /></h1>
+        <Link
+          to={{ pathname: repository }}
+          target="_blank"
+          className="project-desktop-github check-hover"
+        >
+          <GithubSvg size={50} color="white" />
+        </Link>
+        <Link
+          to={{ pathname: link }}
+          target="_blank"
+          className="project-desktop-title-wrapper check-hover"
+        >
+          <h1>
+            {title} <Arrow />
+          </h1>
         </Link>
       </div>
     </div>

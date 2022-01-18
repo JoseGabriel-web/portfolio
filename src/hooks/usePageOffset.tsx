@@ -4,6 +4,7 @@ import Scrollbar from "smooth-scrollbar";
 const usePageOffset = () => {
   const [top, setTop] = useState<number>(0);
   const [left, setLeft] = useState<number>(0);
+
   useEffect(() => {
     const body = document.querySelector("body");
     if (body) {

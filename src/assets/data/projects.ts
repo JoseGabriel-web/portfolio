@@ -1,26 +1,26 @@
-import aadegenIMG from '@assets/images/aadegen.png'
+import aadegenIMG from "@assets/images/aadegen.png";
+import cookdapp from "@assets/images/cookdapp.png";
+import portfolio from "@assets/images/portfolio.png";
 
 const projects = [
-    {
-      image: "https://images.unsplash.com/photo-1566204773863-cf63e6d4ab88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1345&q=100",
-      link: "https://www.aadegen.com",
-      title: "AADEGEN",
-    },
-    {
-      image: "https://images.unsplash.com/photo-1558603668-6570496b66f8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1300&q=100",
-      link: "https://www.google.com",
-      title: "Cereus",
-    },
-    {
-      image: "https://images.unsplash.com/photo-1567225557594-88d73e55f2cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=100",
-      link: "https://www.google.com",
-      title: "Calliope",
-    },
-    {
-      image: "https://images.unsplash.com/photo-1611145367651-6303b46e4040?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2006&q=100",
-      link: "https://www.google.com",
-      title: "Golden",
-    },
-  ]
+  {
+    image: aadegenIMG,
+    link: "https://www.aadegen.com",
+    repository: "https://github.com/JoseGabriel-web/AADEGEN-WEB",
+    title: "AADEGEN",
+  },
+  {
+    image: cookdapp,
+    link: "https://cookdapp.netlify.app/",
+    repository: "https://github.com/NEAR-Hispano/cook-dapp/",
+    title: "CookDApp",
+  },
+  {
+    image: portfolio,
+    link: window.location.href,
+    repository: "https://github.com/JoseGabriel-web/portfolio",
+    title: "Portfolio",
+  },
+];
 
-export default projects
+export default projects;

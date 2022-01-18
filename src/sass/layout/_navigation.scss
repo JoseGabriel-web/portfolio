@@ -144,11 +144,11 @@ nav {
   }
 }
 
-@media screen and (max-width: $layout-breakpoint-medium) {
+// @media screen and (max-width: $layout-breakpoint-medium) {
   .nav-mobile-btn-wrapper {
     display: flex;
   }
   .nav-links-wrapper {
     display: none;
   }
-}
+// }

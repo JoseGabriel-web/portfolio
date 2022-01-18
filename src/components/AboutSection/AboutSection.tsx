@@ -1,7 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import useIsVisible from "@hooks/useIsVisible";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import socialLinks from "@assets/data/socialLinks";
 
 const AboutSection = () => {
